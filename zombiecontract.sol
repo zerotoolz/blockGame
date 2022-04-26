@@ -13,4 +13,7 @@ contract ZombieFactory { //contract name
 
     Zombie[] public zombies; //zombie array structure stogare with public access
 
+    function _createZombie (string _name, uint _dna) private {
+        zombies.push(Zombie(_name, _dna));
+    } 
 }
