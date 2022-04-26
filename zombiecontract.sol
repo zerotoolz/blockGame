@@ -3,6 +3,8 @@ pragma solidity >=0.4.19; //solidity version
 
 contract ZombieFactory { //contract name
 
+    event NewZombie(uint zombieId, string name, uint dna);
+
     uint dnaDigits = 16; //zombie skin
     uint dnaModulus = 10 ** dnaDigits; //zombie skin check = exact 16 digits
 
@@ -14,7 +16,8 @@ contract ZombieFactory { //contract name
     Zombie[] public zombies; //zombie array structure stogare with public access
 
     function _createZombie (string _name, uint _dna) private {
-        zombies.push(Zombie(_name, _dna));
+        uint id = zombies.push(Zombie(_name, _dna)) - 1;
+        NewZombie(id, _name, _dna);
     } 
 
     function _generateRandomDna(string _str) private view returns (uint) {
@@ -22,8 +25,9 @@ contract ZombieFactory { //contract name
         return rand % dnaModulus; // zombie skin with exact 16 digits
     }
     
-        function createRandomZombie(string _name) public { //rando, zombie creation
+        function createRandomZombie(string _name) public { //random, zombie creation
         uint randDna = _generateRandomDna(_name); // skin and name creation 
         _createZombie(_name, randDna); // creation
+    
     }
 }
