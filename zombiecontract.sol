@@ -22,8 +22,8 @@ contract ZombieFactory { //contract name
         return rand % dnaModulus; // zombie skin with exact 16 digits
     }
     
-        function createRandomZombie(string _name) public {
-        uint randDna = _generateRandomDna(_name);
-        _createZombie(_name, randDna);
+        function createRandomZombie(string _name) public { //rando, zombie creation
+        uint randDna = _generateRandomDna(_name); // skin and name creation 
+        _createZombie(_name, randDna); // creation
     }
 }
