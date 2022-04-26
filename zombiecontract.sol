@@ -18,6 +18,7 @@ contract ZombieFactory { //contract name
     } 
 
     function _generateRandomDna(string _str) private view returns (uint) {
-     
+        uint rand = uint(keccak256(_str)); //keccakfrom _str
+        return rand % dnaModulus; // zombie skin with exact 16 digits
     }
 }
