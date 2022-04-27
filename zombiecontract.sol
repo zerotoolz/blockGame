@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.19; //solidity version
 
-contract ZombieFactory { //contract name
+contract ZombieFactory { //contract name, the function takes zombie name and generates ramdon zombie after add it blockchain
 
     event NewZombie(uint zombieId, string name, uint dna); //event new zombie check
 
