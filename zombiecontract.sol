@@ -20,6 +20,8 @@ contract ZombieFactory { //contract name, the function takes zombie name and gen
 
     function _createZombie (string memory _name, uint _dna) private {
         uint id = zombies.push(Zombie(_name, _dna)) - 1; // recently new zombie addedid
+        zombieToOwner[id] = msg.sender; //new zombie id chains with it's owner address for mapping
+        ownerZombieCount[msg.sender]++; //increising zombie count for it's owner in mapping
         NewZombie(id, _name, _dna); //new zombie event related 
     } 
 
