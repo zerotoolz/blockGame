@@ -21,7 +21,7 @@ contract ZombieFactory { //contract name, the function takes zombie name and gen
     function _createZombie (string memory _name, uint _dna) private {
         uint id = zombies.push(Zombie(_name, _dna)) - 1; // recently new zombie addedid
         zombieToOwner[id] = msg.sender; //new zombie id chains with it's owner address for mapping
-        ownerZombieCount[msg.sender]++; //increising zombie count for it's owner in mapping
+        ownerZombieCount[msg.sender]++; //increising (js ++) zombie count for it's owner in mapping
         NewZombie(id, _name, _dna); //new zombie event related 
     } 
 
@@ -31,6 +31,7 @@ contract ZombieFactory { //contract name, the function takes zombie name and gen
     }
     
         function createRandomZombie(string memory _name) public { //random, zombie creation
+        require(ownerZombieCount[msg.sender] == 0); //checks only one zombie for this owner 
         uint randDna = _generateRandomDna(_name); // skin and name creation 
         _createZombie(_name, randDna); // creation
     
