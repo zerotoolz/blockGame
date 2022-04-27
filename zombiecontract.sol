@@ -15,6 +15,9 @@ contract ZombieFactory { //contract name, the function takes zombie name and gen
 
     Zombie[] public zombies; //zombie array structure stogare with public access
 
+    mapping (uint => address) public zombieToOwner; //zombie owner
+    mapping (address => uint) ownerZombieCount; //exact zombie number for this owmner
+
     function _createZombie (string memory _name, uint _dna) private {
         uint id = zombies.push(Zombie(_name, _dna)) - 1; // recently new zombie addedid
         NewZombie(id, _name, _dna); //new zombie event related 
