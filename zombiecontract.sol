@@ -37,6 +37,3 @@ contract ZombieFactory { //contract name, the function takes zombie name and gen
     
     }
 }
-
-contract ZombieFeeding is ZombieFactory {
-}
