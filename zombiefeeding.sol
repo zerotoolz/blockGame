@@ -3,7 +3,7 @@ pragma solidity ^0.4.19;
 import "./zombiefactory.sol";
 
 contract KittyInterface { // interface for zombie feeding from kitty related contract and it's function
-  function getKitty(uint256 _id) external view returns ( //receiving kitty's data
+  function getKitty(uint256 _id) external view returns ( //receiving kitty's data below
     bool isGestating,
     bool isReady,
     uint256 cooldownIndex,
