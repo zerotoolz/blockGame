@@ -30,4 +30,8 @@ contract ZombieFeeding is ZombieFactory {
     _createZombie("NoName", newDna);
   }
 
+  function feedOnKitty(uint _zombieId, uint _kittyId) public { //new function receives kitty genes
+    uint kittyDna; //uint for kittyDna
+    (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId); //genes is #10 so we need it only from KittyIntrface with getKitty
+    feedAndMultiply(_zombieId, kittyDna); //asks feed and multiplication for zombieId and KittyDna in way to comstruct new zombie from 2 related DNAs
 }
