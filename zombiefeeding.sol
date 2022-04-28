@@ -2,8 +2,8 @@ pragma solidity ^0.4.19;
 
 import "./zombiefactory.sol";
 
-contract KittyInterface { // interface for zombie feeding from kitty related contract and it's function
-  function getKitty(uint256 _id) external view returns ( //receiving kitty's data
+contract KittyInterface {
+  function getKitty(uint256 _id) external view returns (
     bool isGestating,
     bool isReady,
     uint256 cooldownIndex,
@@ -19,7 +19,8 @@ contract KittyInterface { // interface for zombie feeding from kitty related con
 
 contract ZombieFeeding is ZombieFactory {
 
-  address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d;
+  address ckAddress = 0x06012c8cf97BEaD5deAe237070F9587f8E7A266d; // Kitty contract address in Ethereum
+  KittyInterface kittyContract = KittyInterface(ckAddress); // KittyInterface = Kitty contract address in Ethereum
 
   function feedAndMultiply(uint _zombieId, uint _targetDna) public {
     require(msg.sender == zombieToOwner[_zombieId]);
