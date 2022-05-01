@@ -21,7 +21,7 @@ contract ZombieFeeding is ZombieFactory {
 
   KittyInterface kittyContract;
 
-  function setKittyContractAddress(address _address) external onlyOwner { //only owner can change kitty contract address
+  function setKittyContractAddress(address _address) external onlyOwner { //only owner can change kitty contract address with ownable.sol legacy from zombiefactory.sol
     kittyContract = KittyInterface(_address);
 } 
 
