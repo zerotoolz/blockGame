@@ -24,6 +24,13 @@ contract ZombieFeeding is ZombieFactory {
   function setKittyContractAddress(address _address) external onlyOwner { //only owner can change kitty contract address with ownable.sol legacy from zombiefactory.sol
     kittyContract = KittyInterface(_address);
 } 
+  
+  function _triggerCooldown(Zombie storage _zombie) internal { 
+    _zombie.readyTime = uint32(now + cooldownTime);
+  }
+  function _isReady(Zombie storage _zombie) internal view returns (bool) {
+      return (_zombie.readyTime <= now);
+  }
 
   function feedAndMultiply(uint _zombieId, uint _targetDna) public {
     require(msg.sender == zombieToOwner[_zombieId]);
