@@ -1,7 +1,5 @@
 pragma solidity ^0.4.19;
-
 import "./zombiefactory.sol";
-
 contract KittyInterface { // interface for zombie feeding from kitty related contract and it's function
   function getKitty(uint256 _id) external view returns ( //receiving kitty's data below
     bool isGestating,
@@ -32,12 +30,17 @@ contract ZombieFeeding is ZombieFactory {
       return (_zombie.readyTime <= now);
   }
 
-  function feedAndMultiply(uint _zombieId, uint _targetDna) public {
+  function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) internal {
     require(msg.sender == zombieToOwner[_zombieId]);
     Zombie storage myZombie = zombies[_zombieId];
+    require(_isReady(myZombie));
     _targetDna = _targetDna % dnaModulus;
     uint newDna = (myZombie.dna + _targetDna) / 2;
+    if (keccak256(_species) == keccak256("kitty")) {
+      newDna = newDna - newDna % 100 + 99;
+    }
     _createZombie("NoName", newDna);
+    _triggerCooldown(myZombie);
   }
 
   function feedOnKitty(uint _zombieId, uint _kittyId) public { //new function receives kitty genes
