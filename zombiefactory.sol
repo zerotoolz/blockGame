@@ -12,6 +12,8 @@ contract ZombieFactory is Ownable {//contract name (ownable for ownable.sol), th
     struct Zombie {
         string name; //zombie name
         uint dna; // zombie skin
+        uint32 level; //zombie levele
+        uint32 readyTime; //when can eat next
     }
 
     Zombie[] public zombies; //zombie array structure stogare with public access
