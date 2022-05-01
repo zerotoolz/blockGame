@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.19; //solidity version
 
-contract ZombieFactory { //contract name, the function takes zombie name and generates ramdon zombie after add it blockchain
+cimport "./ownable.sol";
+contract ZombieFactory is Ownable {//contract name (ownable for ownable.sol), the function takes zombie name and generates ramdon zombie after add it blockchain
 
     event NewZombie(uint zombieId, string name, uint dna); //event new zombie check
 
