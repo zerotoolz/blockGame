@@ -1,4 +1,4 @@
-pragma solidity ^0.4.19;
+pragma solidity ^0.4.19; // https://cryptozombies.io/ru/lesson/3/chapter/12
 
 import "./zombiefeeding.sol";
 
