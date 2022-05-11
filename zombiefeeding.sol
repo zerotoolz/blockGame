@@ -19,6 +19,11 @@ contract ZombieFeeding is ZombieFactory {
 
   KittyInterface kittyContract;
 
+  modifier ownerOf(uint _zombieId) {
+  require(msg.sender == zombieToOwner[_zombieId]);
+  _;
+  }
+
   function setKittyContractAddress(address _address) external onlyOwner { //only owner can change kitty contract address with ownable.sol legacy from zombiefactory.sol
     kittyContract = KittyInterface(_address);
 } 
@@ -30,8 +35,7 @@ contract ZombieFeeding is ZombieFactory {
       return (_zombie.readyTime <= now);
   }
 
-  function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) internal { //only internal function 
-    require(msg.sender == zombieToOwner[_zombieId]);
+  function feedAndMultiply(uint _zombieId, uint _targetDna, string _species) internal ownerOf(_zombieId) { //only internal function 
     Zombie storage myZombie = zombies[_zombieId];
     require(_isReady(myZombie)); // function rquirment = can do this when cooldown time is ok
     _targetDna = _targetDna % dnaModulus;
