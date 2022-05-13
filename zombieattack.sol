@@ -14,5 +14,11 @@ contract ZombieBattle is ZombieHelper {
     Zombie storage myZombie = zombies[_zombieId]; //attacker zombies
     Zombie storage enemyZombie = zombies[_targetId]; //victime zombies 
     uint rand = randMod (100); //resultof attack via random
+        if (rand <= attackVictoryProbability) { // check win or loss, if win then add wincount and level +1, add losscount for enemy and create new zombie from zombiefeeding.sol with f. feedAndMultiply
+      myZombie.winCount++;
+      myZombie.level++;
+      enemyZombie.lossCount++;
+      feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");      
+      } 
   }
 }
