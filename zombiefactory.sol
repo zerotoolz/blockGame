@@ -15,7 +15,9 @@ contract ZombieFactory is Ownable {//contract name (ownable for ownable.sol), th
         uint32 readyTime; //when can eat next
         uint32 level; //zombie level
         uint32 readyTime; //cooldown time
-    }
+        uint16 winCount; //win count 
+         uint16 lossCount; //loss count 
+    
 
     Zombie[] public zombies; //zombie array structure stogare with public access
 
@@ -23,7 +25,7 @@ contract ZombieFactory is Ownable {//contract name (ownable for ownable.sol), th
     mapping (address => uint) ownerZombieCount; //exact zombie number for this owmner address
 
     function _createZombie (string memory _name, uint _dna) internal {
-        uint id = zombies.push(Zombie(_name, _dna,  1, uint32(now + cooldownTime))) - 1; // recently new zombie added with name, DNA, level, cooldown time for next action
+        uint id = zombies.push(Zombie(_name, _dna, 1, uint32(now + cooldownTime), 0, 0)) - 1; // recently new zombie added with name, DNA, level, cooldown time for next action, 0 win and loss count
         zombieToOwner[id] = msg.sender; //new zombie id chains with it's owner address for mapping
         ownerZombieCount[msg.sender]++; //increising (js ++) zombie count for it's owner in mapping
         NewZombie(id, _name, _dna); //new zombie event related 
