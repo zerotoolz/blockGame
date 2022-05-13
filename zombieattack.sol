@@ -19,6 +19,9 @@ contract ZombieBattle is ZombieHelper {
       myZombie.level++;
       enemyZombie.lossCount++;
       feedAndMultiply(_zombieId, enemyZombie.dna, "zombie");      
-      } 
-  }
+    } else { // if loss add +1 to my zombie losscount and +1 to enemy win count
+      myZombie.lossCount++; 
+      enemyZombie.winCount++;
+    }
+    _triggerCooldown(myZombie); //for both scenarious frigget cooldown 
 }
