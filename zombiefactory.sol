@@ -16,7 +16,7 @@ contract ZombieFactory is Ownable {//contract name (ownable for ownable.sol), th
         uint32 level; //zombie level
         uint32 readyTime; //cooldown time
         uint16 winCount; //win count 
-         uint16 lossCount; //loss count 
+        uint16 lossCount; //loss count 
     
 
     Zombie[] public zombies; //zombie array structure stogare with public access
